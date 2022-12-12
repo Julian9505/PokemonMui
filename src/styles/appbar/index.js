@@ -1,4 +1,4 @@
-import { IconButton, List, Typography } from "@mui/material";
+import { IconButton, List, TextField } from "@mui/material";
 import {styled} from "@mui/material/styles";
 import { Box } from "@mui/system";
 // import "@fontsource/montez";
@@ -6,13 +6,14 @@ import { Colors, DrawerWidth } from "../theme";
 // import Pokemon_solid from "";
 
 export const AppbarContainer = styled(Box)(() => ({    
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0px 8px',
-    // fontFamily: Pokemon_solid,
-    background: "linear-gradient(0.125turn, rgba(255, 28, 28), rgba(53, 100, 174), rgba(255, 203, 5))",
-    borderRadius: "0 0 30px 30px"
+  display: 'flex',
+  justifyContent: 'center',
+  position: "fixed",
+  width: "100%",
+  zIndex: 3,
+  alignItems: 'center',
+  background: "linear-gradient(0.125turn, rgba(255, 28, 28), rgba(53, 100, 174), rgba(255, 203, 5))",
+  borderRadius: "0 0 30px 30px",
 }));
 
 export const AppbarImg = styled("img")(({ src, theme }) => ({
@@ -21,14 +22,6 @@ export const AppbarImg = styled("img")(({ src, theme }) => ({
   // height: "5rem",
   width: "5rem",
   marginRight: "2rem"
-}));
-
-export const AppbarHeader = styled(Typography)(() => ({
-  padding: "4px",
-  flexGrow: 1,
-  fontSize: "4em",
-  fontFamily: 'lucida grande',
-  color: Colors.secondary,
 }));
 
 export const ActionIconsContainerMobile = styled(Box)(() => ({
@@ -48,11 +41,13 @@ export const ActionIconsContainerDesktop = styled(Box)(() => ({
 }));
 
 export const MyList = styled(List)(({ type }) => ({
-  maxWidth: "800px",
+  maxWidth: "100vw",
   display: type === "row" ? "flex" : "block",
   alignItems: "center",
-  justifyContent: "space-around",
-  flexGrow: "1"
+  justifyContent: "space-between",
+  flexGrow: "1",
+  margin: "0px 10px 0px 10px",
+  padding: "0px"
 }));
 
 export const DrawerCloseButton = styled(IconButton)(() => ({
@@ -60,4 +55,9 @@ export const DrawerCloseButton = styled(IconButton)(() => ({
   top: 10,
   left: DrawerWidth,
   zIndex: 1999,      
+}));
+
+export const SearchContainer = styled(TextField)(() => ({
+  position: "relative",
+  width: "12vw",
 }));

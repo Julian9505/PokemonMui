@@ -3,7 +3,7 @@ import { Container, Stack } from "@mui/material";
 import Appbar from "./components/appbar";
 import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme";
-import { UIProvider } from "./context/ui";
+import { UIProvider, useUIContext } from "./context/ui";
 import { useEffect } from "react";
 import Pokemones from "./components/products/Pokemones";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,6 +14,8 @@ import Banner from "./components/banner"
 
 
 function App() {
+  // const { buscar } = useUIContext();
+
   useEffect(() => {
     document.title = "React Material UI - Home";
   });
@@ -32,7 +34,8 @@ function App() {
               <Banner />
               <Routes>
                 <Route path="/" element = {<Pokemones/>} />
-                <Route path="/buscar" element = {<Buscar/>} />
+                <Route path="/Pokemones" element = {<Pokemones/>} />
+                <Route path="/buscar" element = {<Buscar/>}/>
                 <Route path="/filtrar" element = {<Filtrar/>} />
               </Routes>
             </UIProvider>

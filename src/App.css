@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+@font-face{
+  font-family: pokemon-solid;
+  src: url(Pokemon-Solid.ttf);
+}
 
 .App-logo {
   height: 40vmin;
@@ -36,3 +40,34 @@
     transform: rotate(360deg);
   }
 }
+
+.info{
+  position: absolute;
+  width: 90vw;
+  height: 20vh; 
+  top: 20vh;
+  left: 6vw;
+}
+
+.pokeinfo{
+  position: relative;
+  top: -2vh;
+  left: 2vw;
+  width: 80px;
+}
+.pokeinfo >*:hover{
+  width: 95px;
+  cursor: pointer;
+}
+
+.pokeinfoicon{
+  position: relative;
+  /* left: -10px; */
+  width: 30px;
+}
+
+.busqueda{
+  background-color: #61dafb!important;
+}
+
+

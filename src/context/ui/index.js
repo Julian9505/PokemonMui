@@ -4,20 +4,20 @@ export const UIContext = createContext({});
 export const useUIContext = () => useContext(UIContext);
 
 export const UIProvider = ({ children }) => {
-    const [drawerOpen, setDrawerOpen] = useState(false);
     const [showSearchBox, setShowSearchBox] = useState(false);
     const [pokemons, setPokemons] = useState([]);
     const [offset, setOffset] = useState(0);
     const [pokemones, setPokemones] = useState([]);
     const [pokemon, setPokemon] = useState([]);
-    const [envio, setEnvio] = useState(1);
+    const [envio, setEnvio] = useState([]);
     const [filtros, setFiltros] = useState([]);
     const [filtro, setFiltro] = useState([]);
     const [pfiltrados, setPFiltrados] = useState([]);
+    const [busqueda, setBusqueda] = useState("");
+    const [anchorEl, setAnchorEl] = useState(null);
+    // const [temp, setTemp] = useState([]);
 
     const value = {
-        drawerOpen,
-        setDrawerOpen,
         showSearchBox, 
         setShowSearchBox,
         pokemons,
@@ -35,7 +35,13 @@ export const UIProvider = ({ children }) => {
         filtro,
         setFiltro,
         pfiltrados,
-        setPFiltrados
+        setPFiltrados,
+        busqueda, 
+        setBusqueda,
+        anchorEl, 
+        setAnchorEl,
+        // temp, 
+        // setTemp
     };
 
     return <UIContext.Provider value={value}>{children}</UIContext.Provider>

@@ -5,12 +5,12 @@ export const DrawerWidth = 250;
 
 export const Colors = {
   primary: "#5f2c3e",
-  secondary: "#d1adcc",
+  secondary: "rgba(255, 28, 28, 0.5)",
   success: "#4CAF50",
   info: "#00a2ff",
   danger: "#FF5722",
   warning: "#FFC107",
-  dark: "#0e1b20",
+  // dark: "#0e1b20",
   light: "#aaa",
   muted: "#abafb3",
   border: "#DDDFE1",
@@ -28,6 +28,28 @@ export const Colors = {
   ///////////////
   white: "#fff",
   black: "#000",
+
+  electric: '#FFEA70',
+  normal: '#B09398',
+  fire: '#FF675C',
+  water: '#0596C7',
+  ice: '#AFEAFD',
+  rock: '#999799',
+  flying: '#7AE7C7',
+  grass: '#4A9681',
+  psychic: '#FFC6D9',
+  ghost: '#561D25',
+  bug: '#A2FAA3',
+  poison: '#795663',
+  ground: '#D2B074',
+  dragon: '#DA627D',
+  steel: '#1D8A99',
+  fighting: '#2F2F2F',
+  dark: '#1E2737',
+  fairy: '#E471A3',
+  unknown: '#D8D0D4',
+  shadow: '#676465',
+  default: '#2A1A1F',
 };
 
 const theme = createTheme({

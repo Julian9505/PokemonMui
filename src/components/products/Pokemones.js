@@ -1,83 +1,76 @@
 import {  Grid, Button } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
 import React, { useEffect } from "react";
 import {
   Product,
   ProductAddToCart,
   ProductImage,
+  ContainerPokemons
 } from "../../styles/product";
 import { useUIContext } from "../../context/ui";
 
 
-function Pokemon({ avatar, name }) {
+function Pokemon({ avatar, name, busqueda }) {
   return (
     <Product>
-    <ProductImage src={avatar} />
-    <ProductAddToCart variant="contained">
-        {name}
-    </ProductAddToCart>
-
+      <ProductImage src={avatar} />
+      <ProductAddToCart variant="contained" className={(busqueda === name) ? "busqueda":""}>
+          {name}
+      </ProductAddToCart>
     </Product>
-  
   );
 }
 
 export default function Pokemones() {
-  const { pokemons, setPokemons, offset, setOffset } = useUIContext();
+  const { pokemons, setPokemons, offset, setOffset, busqueda } = useUIContext();
 
-  useEffect(() => {// El useefect no se hace asyncrono porque no funciona bien, anti patron
-    const getPokemons = async (url) => {
-      setPokemons([]);
-      let res = await fetch(url),// aqui no necesito importar la libreria de axios o fetch por ser react
-        json = await res.json();
+  const getPokemons = async (url) => {
+    setPokemons([]);
+    let res = await fetch(url),
+      json = await res.json();
 
-        // debugger;
-      //console.log(json);
-      json.results.forEach(async (el) => {
-        let res = await fetch(el.url),
-          json = await res.json();
+    json.results.forEach(async (el) => {
+      let res = await fetch(el.url),
+      json = await res.json();
 
-        //console.log(json);
-        let pokemon = {
-          id: json.id,
-          name: json.name,
-          avatar: json.sprites.front_default,
-        };
-        setPokemons((pokemons) => [...pokemons, pokemon]);
-      }); 
-    };
+      let pokemon = {
+        id: json.id,
+        name: json.name,
+        avatar: json.sprites.front_default,
+      };
+      setPokemons((pokemons) => [...pokemons, pokemon]);
+    }); 
+  };
+
+  useEffect(() => {
     getPokemons(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=20`);
-  }, [offset]);// Como solo necesito ejecutar una vez la funcion de efecto se deja el arreglo vacio
-
-  const handleOffset = () => {
-    setOffset(offset === 0 ? 0 : offset-20);
-  }
+  }, [offset]);
 
   return (
-    <>
-      <h2>Peticiones Asíncronas en Hooks</h2>
-      <Button variant="contained" onClick={handleOffset}>Atras</Button>
-      <Button variant="contained" onClick={() => { 
-        setOffset(offset+20)
-        }}>Adelante</Button>
+    <ContainerPokemons>
+      <h1 style={{textAlign: "center"}}>Peticiones Asíncronas en Hooks</h1>
+      <div style={{display: "flex", width: "80%", justifyContent:"space-around", margin: "auto" }}>
+        <Button variant="contained" onClick={() => setOffset(offset === 0 ? 0 : offset-20)}>Atras</Button>
+        <Button variant="contained" onClick={() =>setOffset(offset+20)}>Adelante</Button>
+      </div>
         <Grid
+          // className={classes.btn}
           id = "malla"  
           container
           spacing={{ xs: 2, md: 4 }}
           justifyContent="center"
-          sx={[
-            { margin: `20px 4px 10px 4px` },
-            { overflow: 'auto' }
-          ]}
+          position= "relative"
+          top= "12vh"
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
             {pokemons.length === 0 ? (
               <h3>Cargando...</h3>
             ) : (
               pokemons.map((el) => (
-                <Pokemon key={Math.random()} name={el.name} avatar={el.avatar}/>
+                <Pokemon key={Math.random()} busqueda={busqueda} name={el.name} avatar={el.avatar}/>
               ))
             )}
         </Grid>
-    </>
+    </ContainerPokemons>
   );
 }
