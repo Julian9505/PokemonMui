@@ -50,6 +50,7 @@ export default function Buscar() {
     let Lista = {
       nombre: poke.name,
       img: poke.sprites.front_default,
+    
       color1: poke.types[0].type.name,
       color2: poke.types[1] ? poke.types[1].type.name : "default",
       id: poke.id,
